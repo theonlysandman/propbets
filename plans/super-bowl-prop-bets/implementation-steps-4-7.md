@@ -4,10 +4,10 @@
 ## Step 4: Landing Page - Name Selection
 
 ### Step 4.1: Create UI Components Directory
-- [ ] Create folder: `components/ui`
+- [x] Create folder: `components/ui`
 
 ### Step 4.2: Create Button Component
-- [ ] Create file `components/ui/Button.tsx`:
+- [x] Create file `components/ui/Button.tsx`:
 ```typescript
 'use client'
 
@@ -53,7 +53,7 @@ Button.displayName = 'Button'
 ```
 
 ### Step 4.3: Create Card Component
-- [ ] Create file `components/ui/Card.tsx`:
+- [x] Create file `components/ui/Card.tsx`:
 ```typescript
 'use client'
 
@@ -86,7 +86,7 @@ export function Card({ children, variant = 'glass', hover = false, className = '
 ```
 
 ### Step 4.4: Create Countdown Timer Component
-- [ ] Create file `components/CountdownTimer.tsx`:
+- [x] Create file `components/CountdownTimer.tsx`:
 ```typescript
 'use client'
 
@@ -145,8 +145,8 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
 ```
 
 ### Step 4.5: Create API Route to Check Submission Status
-- [ ] Create folder: `app/api/submissions/check`
-- [ ] Create file `app/api/submissions/check/route.ts`:
+- [x] Create folder: `app/api/submissions/check`
+- [x] Create file `app/api/submissions/check/route.ts`:
 ```typescript
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
@@ -178,7 +178,7 @@ export async function GET() {
 ```
 
 ### Step 4.6: Create Participant Selector Component
-- [ ] Create file `components/ParticipantSelector.tsx`:
+- [x] Create file `components/ParticipantSelector.tsx`:
 ```typescript
 'use client'
 
@@ -281,7 +281,7 @@ export function ParticipantSelector({ onSelect, selectedName }: ParticipantSelec
 ```
 
 ### Step 4.7: Update Landing Page
-- [ ] Replace `app/page.tsx` with:
+- [x] Replace `app/page.tsx` with:
 ```typescript
 'use client'
 
