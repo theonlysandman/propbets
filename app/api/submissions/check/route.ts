@@ -8,12 +8,12 @@ export async function GET() {
 
     const enriched = participants.map((p, i) => ({
       id: String(i + 1),
-      name: p.name,
+    const enriched = (participants || []).map((p, i) => ({
       emoji: p.emoji,
       abbreviation: p.abbreviation,
       has_submitted: !!submissions[p.name],
     }))
-
+      has_submitted: !!submissions?.[p.name],
     return NextResponse.json({ participants: enriched })
   } catch (error) {
     console.error('Error in submissions/check:', error)
