@@ -17,8 +17,8 @@ Build a mobile-first web application where 8 family members can submit Super Bow
 ## Step 1: Project Initialization & Basic Setup
 
 ### Step 1.1: Create Next.js Project
-- [ ] Open terminal in `c:\Users\sandy\coding\propbets`
-- [ ] Run the following command:
+- [x] Open terminal in `c:\Users\sandy\coding\propbets`
+- [x] Run the following command:
 ```bash
 npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias "@/*"
 ```
@@ -31,7 +31,7 @@ npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import
   - Import alias: Yes (@/*)
 
 ### Step 1.2: Install Dependencies
-- [ ] Run the following command to install all required packages:
+- [x] Run the following command to install all required packages:
 ```bash
 npm install @supabase/supabase-js framer-motion react-hot-toast zustand canvas-confetti date-fns
 ```
@@ -41,7 +41,7 @@ npm install -D @types/canvas-confetti
 ```
 
 ### Step 1.3: Update package.json Scripts
-- [ ] Replace the entire `package.json` file with:
+- [x] Replace the entire `package.json` file with:
 ```json
 {
   "name": "propbets",
@@ -80,7 +80,7 @@ npm install -D @types/canvas-confetti
 ```
 
 ### Step 1.4: Configure TypeScript
-- [ ] Replace `tsconfig.json` with:
+- [x] Replace `tsconfig.json` with:
 ```json
 {
   "compilerOptions": {
@@ -112,7 +112,7 @@ npm install -D @types/canvas-confetti
 ```
 
 ### Step 1.5: Configure Tailwind CSS
-- [ ] Replace `tailwind.config.ts` with:
+- [x] Replace `tailwind.config.ts` with:
 ```typescript
 import type { Config } from 'tailwindcss'
 
@@ -149,9 +149,85 @@ const config: Config = {
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'confetti': 'confetti 3s ease-out forwards',
-      },
-      keyframes: {
-        confetti: {
+    ### Step 2.4: Create Initial Schema Migration
+    - [x] Create file `supabase/migrations/001_initial_schema.sql` (created locally).
+    - [ ] Execute Initial Migration (manual step in Supabase dashboard)
+  
+    ```sql
+    -- Enable UUID extension
+    CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+    -- Participants table
+    CREATE TABLE participants (
+      id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+      name TEXT UNIQUE NOT NULL,
+      emoji TEXT NOT NULL,
+      abbreviation TEXT NOT NULL,
+      has_submitted BOOLEAN DEFAULT FALSE,
+      submitted_at TIMESTAMPTZ,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    -- Categories table
+    CREATE TABLE categories (
+      id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+      name TEXT UNIQUE NOT NULL,
+      emoji TEXT NOT NULL,
+      display_order INTEGER NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    -- Questions table
+    CREATE TABLE questions (
+      id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+      category_id UUID NOT NULL REFERENCES categories(id) ON DELETE CASCADE,
+      question_text TEXT NOT NULL,
+      question_number INTEGER NOT NULL,
+      question_type TEXT NOT NULL CHECK (question_type IN ('YES_NO', 'MULTIPLE_CHOICE', 'OVER_UNDER')),
+      options JSONB NOT NULL,
+      correct_answer TEXT,
+      display_order INTEGER NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT NOW(),
+      UNIQUE(category_id, question_number)
+    );
+
+    -- Responses table (user picks)
+    CREATE TABLE responses (
+      id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+      participant_id UUID NOT NULL REFERENCES participants(id) ON DELETE CASCADE,
+      question_id UUID NOT NULL REFERENCES questions(id) ON DELETE CASCADE,
+      answer TEXT NOT NULL,
+      is_correct BOOLEAN,
+      created_at TIMESTAMPTZ DEFAULT NOW(),
+      UNIQUE(participant_id, question_id)
+    );
+
+    -- Submissions table (tracks when each participant submits)
+    CREATE TABLE submissions (
+      id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+      participant_id UUID UNIQUE NOT NULL REFERENCES participants(id) ON DELETE CASCADE,
+      submitted_at TIMESTAMPTZ DEFAULT NOW(),
+      total_score INTEGER,
+      created_at TIMESTAMPTZ DEFAULT NOW()
+    );
+
+    -- Create indexes for performance
+    CREATE INDEX idx_responses_participant ON responses(participant_id);
+    CREATE INDEX idx_responses_question ON responses(question_id);
+    CREATE INDEX idx_questions_category ON questions(category_id);
+    CREATE INDEX idx_submissions_participant ON submissions(participant_id);
+
+    -- Insert participants
+    INSERT INTO participants (name, emoji, abbreviation) VALUES
+      ('Grand-Dad', '👴', 'GD'),
+      ('Mema', '👵', 'Me'),
+      ('Grammie', '👵', 'Gr'),
+      ('Sandy', '🧑', 'Sa'),
+      ('Erica', '👩', 'Er'),
+      ('Finley', '🧒', 'Fi'),
+      ('Jacob', '🧒', 'Ja'),
+      ('Aunt Kira', '👩', 'Ki');
+    ```
           '0%': { transform: 'translateY(0) rotate(0deg)', opacity: '1' },
           '100%': { transform: 'translateY(100vh) rotate(720deg)', opacity: '0' },
         },
@@ -164,7 +240,7 @@ export default config
 ```
 
 ### Step 1.6: Update Global Styles
-- [ ] Replace `app/globals.css` with:
+- [x] Replace `app/globals.css` with:
 ```css
 @tailwind base;
 @tailwind components;
@@ -213,7 +289,7 @@ export default config
 ```
 
 ### Step 1.7: Configure Next.js
-- [ ] Replace `next.config.js` (or create `next.config.mjs`) with:
+- [x] Replace `next.config.js` (or create `next.config.mjs`) with:
 ```javascript
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -246,7 +322,7 @@ module.exports = nextConfig
 ```
 
 ### Step 1.8: Create Environment Variables File
-- [ ] Create `.env.local` file in project root:
+- [x] Create `.env.local` file in project root:
 ```bash
 # Supabase Configuration (you'll fill these in after creating your Supabase project)
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url_here
@@ -257,7 +333,7 @@ ADMIN_PASSWORD=superbowl2026
 ```
 
 ### Step 1.9: Update .gitignore
-- [ ] Add to `.gitignore`:
+- [x] Add to `.gitignore`:
 ```
 # dependencies
 /node_modules
@@ -299,7 +375,7 @@ next-env.d.ts
 ```
 
 ### Step 1.10: Create Root Layout
-- [ ] Replace `app/layout.tsx` with:
+- [x] Replace `app/layout.tsx` with:
 ```typescript
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -358,7 +434,7 @@ export default function RootLayout({
 ```
 
 ### Step 1.11: Create Temporary Homepage
-- [ ] Replace `app/page.tsx` with:
+- [x] Replace `app/page.tsx` with:
 ```typescript
 export default function Home() {
   return (
@@ -385,8 +461,8 @@ export default function Home() {
 ```
 
 ### Step 1 Verification Checklist
-- [ ] Run `npm install` to install all dependencies
-- [ ] Run `npm run dev` to start development server
+- [x] Run `npm install` to install all dependencies
+- [x] Run `npm run dev` to start development server
 - [ ] Open browser to `http://localhost:3000`
 - [ ] Verify page displays "Super Bowl LX Prop Bets" with gradient text
 - [ ] Verify dark theme background (gradient from slate to indigo)
@@ -515,8 +591,7 @@ INSERT INTO participants (name, emoji, abbreviation) VALUES
 - [ ] Verify "participants" table has 8 rows
 
 ### Step 2.6: Create Supabase Client Utility
-- [ ] Create folder: `lib`
-- [ ] Create file `lib/supabase.ts`:
+- [x] Create folder: `lib` and `lib/supabase.ts` (added locally).
 ```typescript
 import { createClient } from '@supabase/supabase-js'
 import { Database } from './types'
@@ -540,7 +615,7 @@ export function handleSupabaseError(error: any) {
 ```
 
 ### Step 2.7: Create TypeScript Types
-- [ ] Create file `lib/types.ts`:
+- [x] Create file `lib/types.ts` with database and helper types (added locally).
 ```typescript
 // Database types
 export interface Database {
@@ -662,7 +737,7 @@ export interface CategoryProgress {
 ```
 
 ### Step 2.8: Test Supabase Connection
-- [ ] Create file `app/test-db/page.tsx`:
+- [x] Create file `app/test-db/page.tsx` (added locally).
 ```typescript
 import { supabase } from '@/lib/supabase'
 
@@ -714,10 +789,11 @@ export default async function TestDB() {
 - [ ] Check all 5 tables exist: participants, categories, questions, responses, submissions
 
 ### Step 2 STOP & COMMIT
-**STOP & COMMIT:** Commit these changes:
+**STOP & COMMIT:** Commit these changes before proceeding:
 ```bash
 git add .
-git commit -m "feat: set up Supabase database schema and client connection"
+git commit -m "feat: add Supabase schema, client, types, and test DB page"
+```
 ```
 
 ---
