@@ -34,7 +34,7 @@ jobs:
       - name: Prepare standalone package
         run: |
           cp -r .next/static .next/standalone/.next/static
-          cp -r public .next/standalone/public
+          if [ -d "public" ]; then cp -r public .next/standalone/public; fi
           # Include data folder with db.json for initial seed
           mkdir -p .next/standalone/data
           cp data/db.json .next/standalone/data/db.json
