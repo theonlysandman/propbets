@@ -67,12 +67,12 @@ export function OverUnder({ value, onChange, overUnder, disabled = false }: Over
               </AnimatePresence>
             </span>
 
-            {/* icon + label */}
+            {/* icon + label + value */}
             <span className={[
               'text-lg font-semibold transition-colors duration-200',
               isSelected ? 'text-white' : 'text-slate-300 group-hover:text-slate-100',
             ].join(' ')}>
-              {icon} {key}
+              {icon} {key} {overUnder.value}
             </span>
           </motion.button>
         )
