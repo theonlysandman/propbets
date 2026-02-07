@@ -63,7 +63,7 @@
     box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
   }
   .btn-primary {
-    @apply bg-gradient-primary text-white font-semibold rounded-full px-6 py-4 
+    @apply bg-gradient-primary text-white font-semibold rounded-full
            shadow-lg shadow-primary/25 hover:shadow-glow hover:scale-[1.02]
            active:scale-95 transition-all duration-200
            focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 
@@ -71,7 +71,7 @@
   }
 
   .btn-secondary {
-    @apply border-2 border-slate-600 text-slate-200 font-semibold rounded-full px-6 py-4
+    @apply border-2 border-slate-600 text-slate-200 font-semibold rounded-full
            hover:bg-slate-700/50 hover:border-slate-500 active:scale-95 
            transition-all duration-200
            focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 
@@ -104,7 +104,7 @@
   }
 
   .pb-safe-bottom {
-    padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 1.25rem));
   }
 
   /* participant card hover glow on non-touch devices */

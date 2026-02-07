@@ -52,6 +52,7 @@ export function ConfirmationModal({
                   onClick={onClose}
                   disabled={loading}
                   className="flex-1"
+                  size="lg"
                 >
                   Cancel
                 </Button>
@@ -60,6 +61,7 @@ export function ConfirmationModal({
                   onClick={onConfirm}
                   disabled={loading}
                   className="flex-1"
+                  size="lg"
                 >
                   {loading ? (
                     <span className="flex items-center justify-center gap-2">

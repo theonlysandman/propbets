@@ -27,7 +27,7 @@ export function OverUnder({ value, onChange, overUnder, disabled = false }: Over
       </div>
 
       {/* over / under buttons */}
-      <div className="space-y-2" role="radiogroup" aria-label="Over or Under">
+      <div className="space-y-3" role="radiogroup" aria-label="Over or Under">
         {OPTIONS.map(({ key, icon }) => {
           const isSelected = value === key
           return (

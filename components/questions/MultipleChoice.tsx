@@ -11,7 +11,7 @@ interface MultipleChoiceProps {
 
 export function MultipleChoice({ choices, value, onChange, disabled = false }: MultipleChoiceProps) {
   return (
-    <div className="space-y-2" role="radiogroup">
+    <div className="space-y-3" role="radiogroup">
       {choices.map((choice, index) => {
         const isSelected = value === choice
         return (
@@ -64,7 +64,7 @@ export function MultipleChoice({ choices, value, onChange, disabled = false }: M
 
             {/* label */}
             <span className={[
-              'flex-1 text-[0.925rem] font-medium transition-colors duration-200',
+              'flex-1 text-base font-medium transition-colors duration-200',
               isSelected ? 'text-white' : 'text-slate-300 group-hover:text-slate-100',
             ].join(' ')}>
               {choice}

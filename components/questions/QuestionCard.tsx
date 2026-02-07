@@ -65,7 +65,7 @@ export function QuestionCard({
         <span className="mt-0.5 text-sm font-bold text-slate-500 tabular-nums">
           {questionNumber}.
         </span>
-        <h3 className="flex-1 text-[0.95rem] font-semibold text-slate-100 leading-snug">
+        <h3 className="flex-1 text-base font-semibold text-slate-100 leading-snug">
           {question.question_text}
         </h3>
       </div>

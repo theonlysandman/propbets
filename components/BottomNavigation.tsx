@@ -56,7 +56,7 @@ export function BottomNavigation({
             onClick={onContinue}
             disabled={!canContinue}
             className={canGoBack ? 'flex-[2]' : 'flex-1'}
-            size="md"
+            size="lg"
           >
             <span>{isLastCategory ? 'Review Picks' : 'Continue'}</span>
             <span className="text-lg">→</span>

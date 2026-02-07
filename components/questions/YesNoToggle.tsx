@@ -12,7 +12,7 @@ const OPTIONS = ['YES', 'NO'] as const
 
 export function YesNoToggle({ value, onChange, disabled = false }: YesNoToggleProps) {
   return (
-    <div className="grid grid-cols-2 gap-2.5" role="radiogroup" aria-label="Yes or No">
+    <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-label="Yes or No">
       {OPTIONS.map((opt) => {
         const isSelected = value === opt
         return (
