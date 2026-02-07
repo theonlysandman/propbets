@@ -24,14 +24,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const sizeClasses: Record<string,string> = {
       sm: 'px-5 py-2.5 text-sm min-h-[44px]',
       md: 'px-6 py-3 text-base min-h-[44px]',
-      lg: 'px-8 py-4 text-lg min-h-[52px]',
+      lg: 'px-8 py-5 text-lg min-h-[72px]',
     }
 
     return (
       <motion.button
         ref={ref as any}
         whileHover={!disabled && !isLoading ? { scale: variant === 'primary' ? 1.02 : 1.01 } : undefined}
-        whileTap={{ scale: disabled || isLoading ? 1 : 0.95 }}
         className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
         disabled={disabled || isLoading}
         {...(props as any)}

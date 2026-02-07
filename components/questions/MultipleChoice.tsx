@@ -11,7 +11,7 @@ interface MultipleChoiceProps {
 
 export function MultipleChoice({ choices, value, onChange, disabled = false }: MultipleChoiceProps) {
   return (
-    <div className="space-y-5" role="radiogroup">
+    <div className="space-y-8" role="radiogroup">
       {choices.map((choice, index) => {
         const isSelected = value === choice
         return (
@@ -26,7 +26,7 @@ export function MultipleChoice({ choices, value, onChange, disabled = false }: M
             onClick={() => !disabled && onChange(choice)}
             disabled={disabled}
             className={[
-              'group w-full min-h-[56px] px-4 py-3 rounded-xl text-left border-2',
+              'group w-full min-h-[72px] px-4 py-3 rounded-xl text-left border-2',
               'transition-all duration-200 touch-target flex items-center gap-3',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400',
               'focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900',
@@ -64,7 +64,7 @@ export function MultipleChoice({ choices, value, onChange, disabled = false }: M
 
             {/* label */}
             <span className={[
-              'flex-1 text-base font-medium transition-colors duration-200',
+              'flex-1 text-lg font-medium transition-colors duration-200',
               isSelected ? 'text-white' : 'text-slate-300 group-hover:text-slate-100',
             ].join(' ')}>
               {choice}

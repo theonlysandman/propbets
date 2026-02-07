@@ -12,7 +12,7 @@ const OPTIONS = ['YES', 'NO'] as const
 
 export function YesNoToggle({ value, onChange, disabled = false }: YesNoToggleProps) {
   return (
-    <div className="grid grid-cols-2 gap-5" role="radiogroup" aria-label="Yes or No">
+    <div className="grid grid-cols-2 gap-8" role="radiogroup" aria-label="Yes or No">
       {OPTIONS.map((opt) => {
         const isSelected = value === opt
         return (
@@ -24,7 +24,7 @@ export function YesNoToggle({ value, onChange, disabled = false }: YesNoTogglePr
             onClick={() => !disabled && onChange(opt)}
             disabled={disabled}
             className={[
-              'group min-h-[56px] rounded-xl border-2',
+              'group min-h-[72px] rounded-xl border-2',
               'transition-all duration-200 touch-target flex items-center justify-center gap-2.5',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400',
               'focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900',
@@ -62,7 +62,7 @@ export function YesNoToggle({ value, onChange, disabled = false }: YesNoTogglePr
 
             {/* label */}
             <span className={[
-              'text-base font-semibold transition-colors duration-200',
+              'text-lg font-semibold transition-colors duration-200',
               isSelected ? 'text-white' : 'text-slate-300 group-hover:text-slate-100',
             ].join(' ')}>
               {opt}

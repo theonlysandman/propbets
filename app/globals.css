@@ -94,7 +94,7 @@
 
   /* Better touch targets for mobile */
   .touch-target {
-    @apply min-h-[44px] min-w-[44px];
+    @apply min-h-[56px] min-w-[44px];
   }
 
   /* iPhone safe area padding */

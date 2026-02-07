@@ -9,6 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        foreground: 'hsl(var(--foreground))',
         primary: {
           50: '#eef2ff',
           100: '#e0e7ff',

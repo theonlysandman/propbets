@@ -23,7 +23,7 @@ export function BottomNavigation({
       {/* shorter fade */}
       <div className="absolute bottom-full left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none" />
 
-      <div className="bg-slate-900/95 backdrop-blur-xl border-t border-slate-700/50 px-4 pt-3 pb-safe-bottom">
+      <div className="bg-slate-900/95 backdrop-blur-xl border-t border-slate-700/50 px-4 pt-5 pb-safe-bottom">
         {/* inline hint above buttons */}
         <AnimatePresence>
           {!canContinue && (
@@ -38,7 +38,7 @@ export function BottomNavigation({
           )}
         </AnimatePresence>
 
-        <div className="max-w-lg mx-auto flex gap-3">
+        <div className="max-w-lg mx-auto flex gap-4">
           {canGoBack && (
             <Button
               variant="ghost"
