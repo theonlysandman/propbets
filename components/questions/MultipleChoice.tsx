@@ -11,7 +11,7 @@ interface MultipleChoiceProps {
 
 export function MultipleChoice({ choices, value, onChange, disabled = false }: MultipleChoiceProps) {
   return (
-    <div className="space-y-3" role="radiogroup">
+    <div className="space-y-5" role="radiogroup">
       {choices.map((choice, index) => {
         const isSelected = value === choice
         return (

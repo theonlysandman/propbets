@@ -58,17 +58,13 @@ export function QuestionCard({
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
-      className="py-5 first:pt-0"
+      className="py-7 first:pt-0"
     >
-      {/* question label row */}
-      <div className="flex items-start gap-2.5 mb-3">
-        <span className="mt-0.5 text-sm font-bold text-slate-500 tabular-nums">
-          {questionNumber}.
-        </span>
-        <h3 className="flex-1 text-base font-semibold text-slate-100 leading-snug">
-          {question.question_text}
-        </h3>
-      </div>
+      {/* question label */}
+      <h3 className="text-base font-semibold text-slate-100 leading-snug mb-3">
+        <span className="text-slate-500 tabular-nums">{questionNumber}.</span>{' '}
+        {question.question_text}
+      </h3>
 
       {/* answer component */}
       {renderAnswerComponent()}

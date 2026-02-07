@@ -44,7 +44,7 @@ export function BottomNavigation({
               variant="ghost"
               onClick={onBack}
               className="flex-1"
-              size="md"
+              size="lg"
             >
               <span className="text-lg">←</span>
               <span>Back</span>

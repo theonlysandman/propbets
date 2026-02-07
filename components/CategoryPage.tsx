@@ -21,7 +21,7 @@ export function CategoryPage({
     <div className="max-w-lg mx-auto px-4 pt-2 pb-32">
       <CategoryHeader emoji={(category as any).emoji || '🏈'} name={(category as any).title || (category as any).name || ''} />
       
-      <div className="divide-y divide-slate-700/40">
+      <div className="divide-y divide-slate-600/60">
         {questions.map((question, index) => (
           <QuestionCard
             key={question.id}
