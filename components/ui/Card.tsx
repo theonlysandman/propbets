@@ -20,7 +20,7 @@ export function Card({ children, variant = 'glass', hover = false, className = '
       whileHover={hover ? { scale: 1.02 } : undefined}
       whileTap={hover ? { scale: 0.98 } : undefined}
       className={`${variantClasses[variant]} rounded-2xl p-6 ${className}`}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.div>

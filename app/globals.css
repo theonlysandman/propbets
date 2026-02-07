@@ -15,30 +15,102 @@
   body {
     @apply bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Better focus outline */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-400 ring-offset-2 ring-offset-slate-900;
+  }
+
+  /* Better tap highlight for mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-slate-800/30 backdrop-blur-md border border-slate-700/50;
+    @apply bg-slate-800/30 backdrop-blur-md border border-slate-700/50 
+           transition-all duration-200;
   }
 
   .glass-strong {
-    @apply bg-slate-800/60 backdrop-blur-lg border border-slate-600/50;
+    @apply bg-slate-800/60 backdrop-blur-lg border border-slate-600/50
+           transition-all duration-200;
   }
 
+  .glass-hover {
+    @apply hover:bg-slate-800/40 hover:border-slate-600/60;
+  }
+
+  /* Explicit glow utilities (fallbacks in case Tailwind shadow utilities aren't generated) */
+  .shadow-glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+  }
+
+  .shadow-glow-sm {
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+  }
   .btn-primary {
     @apply bg-gradient-primary text-white font-semibold rounded-full px-6 py-4 
-           shadow-lg shadow-primary/25 hover:shadow-primary/40 
-           active:scale-95 transition-all duration-200;
+           shadow-lg shadow-primary/25 hover:shadow-glow hover:scale-[1.02]
+           active:scale-95 transition-all duration-200
+           focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 
+           focus-visible:ring-offset-slate-900;
   }
 
   .btn-secondary {
     @apply border-2 border-slate-600 text-slate-200 font-semibold rounded-full px-6 py-4
-           hover:bg-slate-700/50 active:scale-95 transition-all duration-200;
+           hover:bg-slate-700/50 hover:border-slate-500 active:scale-95 
+           transition-all duration-200
+           focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 
+           focus-visible:ring-offset-slate-900;
+  }
+
+  .btn-selected {
+    @apply bg-gradient-primary text-white shadow-glow border-2 border-primary-400;
   }
 
   .text-gradient {
     @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+
+  /* Animation utilities */
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  /* Better touch targets for mobile */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* iPhone safe area padding */
+  .safe-area-pad {
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  .pb-safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+  }
+
+  /* participant card hover glow on non-touch devices */
+  @media (hover: hover) {
+    .participant-card:hover {
+      box-shadow: 0 4px 24px rgba(99, 102, 241, 0.08);
+    }
   }
 }

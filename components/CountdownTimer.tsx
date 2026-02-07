@@ -8,7 +8,9 @@ interface CountdownTimerProps {
 }
 
 export function CountdownTimer({ targetDate }: CountdownTimerProps) {
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft())
+  const [timeLeft, setTimeLeft] = useState<{
+    days: number; hours: number; minutes: number; seconds: number; isLessThan24h: boolean
+  } | null>(null)
 
   function getTimeLeft() {
     const now = new Date().getTime()
@@ -29,6 +31,8 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
   }
 
   useEffect(() => {
+    setTimeLeft(getTimeLeft())
+
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft())
     }, 1000)
@@ -36,7 +40,26 @@ export function CountdownTimer({ targetDate }: CountdownTimerProps) {
     return () => clearInterval(timer)
   }, [targetDate])
 
+  if (!timeLeft) {
+    return (
+      <div className="flex items-center gap-2 text-slate-300">
+        <span className="text-2xl">⏰</span>
+        <span className="text-lg font-semibold">--h --m --s</span>
+      </div>
+    )
+  }
+
   const { days, hours, minutes, seconds, isLessThan24h } = timeLeft
+  const isExpired = days === 0 && hours === 0 && minutes === 0 && seconds === 0
+
+  if (isExpired) {
+    return (
+      <div className="flex items-center gap-2 text-emerald-400">
+        <span className="text-2xl">🏈</span>
+        <span className="text-lg font-semibold">Game on!</span>
+      </div>
+    )
+  }
 
   return (
     <motion.div

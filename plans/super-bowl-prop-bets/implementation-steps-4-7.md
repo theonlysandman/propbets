@@ -814,6 +814,8 @@ git commit -m "feat: create question component library (YesNo, MultipleChoice, O
 ### Step 6.1: Create Form State Hook with Zustand
 - [ ] Create folder: `lib/hooks`
 - [ ] Create file `lib/hooks/useFormState.ts`:
+- [x] Create folder: `lib/hooks`
+- [x] Create file `lib/hooks/useFormState.ts`:
 ```typescript
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
@@ -873,6 +875,7 @@ export const useFormState = create<FormState>()(
 
 ### Step 6.2: Create Progress Bar Component
 - [ ] Create file `components/ProgressBar.tsx`:
+- [x] Create file `components/ProgressBar.tsx`:
 ```typescript
 'use client'
 
@@ -940,6 +943,7 @@ export function ProgressBar({
 
 ### Step 6.3: Create Category Page Component
 - [ ] Create file `components/CategoryPage.tsx`:
+- [x] Create file `components/CategoryPage.tsx`:
 ```typescript
 'use client'
 
@@ -982,6 +986,7 @@ export function CategoryPage({
 
 ### Step 6.4: Create Bottom Navigation Component
 - [ ] Create file `components/BottomNavigation.tsx`:
+- [x] Create file `components/BottomNavigation.tsx`:
 ```typescript
 'use client'
 
@@ -1042,6 +1047,8 @@ export function BottomNavigation({
 ### Step 6.5: Create Main Submission Page
 - [ ] Create folder: `app/submit/[name]`
 - [ ] Create file `app/submit/[name]/page.tsx`:
+- [x] Create folder: `app/submit/[name]`
+- [x] Create file `app/submit/[name]/page.tsx`:
 ```typescript
 'use client'
 
@@ -1193,6 +1200,8 @@ export default function SubmitPage() {
 ### Step 6.6: Create API Route for Questions
 - [ ] Create folder: `app/api/questions`
 - [ ] Create file `app/api/questions/route.ts`:
+- [x] Create folder: `app/api/questions`
+- [x] Create file `app/api/questions/route.ts`:
 ```typescript
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'

@@ -1,5 +1,9 @@
 {
     "chat.tools.terminal.autoApprove": {
-        "dir": true
+        "dir": true,
+        "/^node scripts/seed-db\\.mjs$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
     }
 }
