@@ -34,6 +34,10 @@ export default function SubmitPage() {
     fetchQuestionsData()
   }, [participantName])
 
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [currentCategoryIndex])
+
   async function fetchQuestionsData() {
     try {
       const res = await fetch('/api/questions')
@@ -106,7 +110,7 @@ export default function SubmitPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <ProgressBar
         participantName={participantName}
         currentIndex={currentCategoryIndex}
@@ -122,7 +126,7 @@ export default function SubmitPage() {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30, overshootClamping: true }}
         >
           <CategoryPage
             category={currentCategory}
