@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ParticipantSelector } from '@/components/ParticipantSelector'
 import { CountdownTimer } from '@/components/CountdownTimer'
@@ -72,6 +73,21 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <ParticipantSelector onSelect={setSelectedName} selectedName={selectedName} />
+          </motion.div>
+
+          {/* ── results link ── */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="mt-6 text-center"
+          >
+            <Link
+              href="/results"
+              className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors"
+            >
+              🏆 View Results
+            </Link>
           </motion.div>
         </div>
       </div>
